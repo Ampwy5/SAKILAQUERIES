@@ -110,7 +110,22 @@ payment ON customer.customer_id = payment.customer_id
 GROUP BY customer.customer_id
 ORDER BY last_name ASC;
 
--- Use subqueries to display the titles of movies starting with the letters K and Q whose language is English.
+-- 7a. Use subqueries to display the titles of movies starting with the letters K and Q whose language is English.
+SELECT film.title, language.name 
+FROM film
+INNER JOIN
+language ON film.language_Id = language.language_id 
+WHERE title LIKE "Q%" or title LIKE "K%" and name = "English";
+
+-- 7b. Use subqueries to display all actors who appear in the film Alone Trip.
+SELECT film.title, COUNT(film_actor.actor_id) as Total_Actors
+FROM film
+INNER JOIN 
+film_actor ON film.film_id = film_actor.film_id
+WHERE title = "Alone Trip" 
+GROUP by film.title; 
+
+
 
 
 
